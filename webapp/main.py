@@ -1,7 +1,7 @@
 # -*- coding: utf8 -*-
 
 from flask import Flask
-from flask.ext.jsonpify import jsonify
+from flask_jsonpify import jsonify
 
 import db
 
