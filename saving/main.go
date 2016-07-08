@@ -25,7 +25,7 @@ func main() {
 
 	tickin := time.NewTicker(20 * time.Second)
 
-	for _ := range tickin.C {
+	for range tickin.C {
 		err = wpis(c)
 		if err != nil {
 			log.Println(err)
