@@ -23,3 +23,6 @@ def getfrom(fromtime):
 @app.route("/<int:fromtime>/<int:totime>")
 def getfromto(fromtime, totime):
     return jsonify(db.dajoddo(fromtime, totime))
+
+if __name__ == "__main__":
+    app.run(debug=True)
