@@ -1,7 +1,11 @@
+# -*- coding: utf8 -*-
+
 from flask import Flask
 from flask.ext.jsonpify import jsonify
 
 app = Flask(__name__)
+
+__author__ = u"Michał Krzysztof Feiler <archiet@platinum.edu.pl>"
 
 
 @app.route("/")
