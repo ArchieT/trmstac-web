@@ -7,4 +7,4 @@ storage:
                 enabled: true
         dbPath: "$HOME/datamongo/"
 processManagement:
-        fork: true
+        fork: false
