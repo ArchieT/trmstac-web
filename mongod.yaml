@@ -5,6 +5,6 @@ systemLog:
 storage:
         journal:
                 enabled: true
-        dbpath: "$HOME/datamongo/"
+        dbPath: "$HOME/datamongo/"
 processManagement:
         fork: true
