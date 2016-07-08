@@ -3,7 +3,6 @@ package main
 import (
 	"github.com/ArchieT/trmstac/get"
 	"gopkg.in/mgo.v2"
-	"gopkg.in/mgo.v2/bson"
 	"log"
 	"time"
 )
