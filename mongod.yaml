@@ -1,0 +1,10 @@
+systemLog:
+        destination: file
+        path: "$HOME/logmongod.log"
+        logAppend: true
+storage:
+        journal:
+                enabled: true
+        dbpath: "$HOME/datamongo/"
+processManagement:
+        fork: true
