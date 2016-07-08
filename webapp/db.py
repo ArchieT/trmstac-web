@@ -20,7 +20,8 @@ def najnowszy():
 def dajod(odtstamp):
     start = datetime.datetime.fromtimestamp(odtstamp)
     print start
-    nasz = c.find({'time': {'$gte': start}}, {"_id": 0}).sort("timestamp", 1)
+    nasz = c.find({'timestamp': {'$gte': start}},
+                  {"_id": 0}).sort("timestamp", 1)
     return [k for k in nasz]
 
 
@@ -28,6 +29,6 @@ def dajoddo(odtstamp, dotstamp):
     start = datetime.datetime.fromtimestamp(odtstamp)
     stop = datetime.datetime.fromtimestamp(dotstamp)
     print start, stop
-    nasz = c.find({'time': {'$gte': start, '$lt': stop}}, {"_id": 0}
-                  ).sort("timestamp", 1)
+    nasz = c.find({'timestamp': {'$gte': start, '$lt': stop}},
+                  {"_id": 0}).sort("timestamp", 1)
     return [k for k in nasz]
