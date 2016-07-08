@@ -6,5 +6,6 @@ storage:
         journal:
                 enabled: true
         dbPath: "datamongo/"
+        engine: wiredTiger
 processManagement:
         fork: false
