@@ -47,8 +47,7 @@ def find_opening_closing(start, stop):
 
 def find_stations(start, stop):
     stacje = c.find(przedzialczasowy(start, stop),
-                    {"list.loc": 1, "list.info": 1,
-                     "list.sta": 0, "_id": 0, "timestamp": 0})
+                    {"list.loc": 1, "list.info": 1})
     return set(k for k in stacje)
 
 
