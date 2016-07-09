@@ -20,20 +20,6 @@ def najnowszy():
     return [k for k in findlatest()]
 
 
-def findall():
-    nasz = c.find({}, {"_id": 0}).sort("timestamp", 1)
-    return nasz
-
-
-def findod(start):
-    if start is None:
-        return findall()
-    print start
-    nasz = c.find({'timestamp': {'$gte': start}},
-                  {"_id": 0}).sort("timestamp", 1)
-    return nasz
-
-
 def dajoddo(odtstamp, dotstamp):
     nasz = findoddo(
         datetime.datetime.fromtimestamp(
@@ -45,26 +31,35 @@ def dajoddo(odtstamp, dotstamp):
 
 
 def findoddo(start, stop):
-    if stop is None:
-        return findod(start)
     print start, stop
-    nasz = c.find({'timestamp': {'$gte': start, '$lt': stop}},
+    nasz = c.find(przedzialczasowy(start, stop),
                   {"_id": 0}).sort("timestamp", 1)
     return nasz
 
 
-def find_opening_closing(nasz, start, stop):
-    przedzial = nasz.find({'timestamp': {'$gte': start, '$lt': stop}})
-    pocz = przedzial.limit(1).sort("timestamp", 1)
-    konc = przedzial.limit(1).sort("timestamp", -1)
+def find_opening_closing(start, stop):
+    przedzial = c.find(przedzialczasowy(start, stop),
+                       {"_id": 0}).limit(1)
+    pocz = przedzial.sort("timestamp", 1)
+    konc = przedzial.sort("timestamp", -1)
     return {"pocz": pocz, "konc": konc, "przedzial": przedzial}
 
 
-def find_stations(przedzial):
-    stacje = przedzial.find({}, {"list.loc": 1, "list.info": 1,
-                                 "list.sta": 0, "_id": 0, "timestamp": 0})
+def find_stations(start, stop):
+    stacje = c.find(przedzialczasowy(start, stop),
+                    {"list.loc": 1, "list.info": 1,
+                     "list.sta": 0, "_id": 0, "timestamp": 0})
     return set(k for k in stacje)
 
-wszystkie = findall()
 
-print find_stations(wszystkie)
+def przedzialczasowy(start, stop):
+    if start is None and stop is None:
+        return {}
+    ourdict = {}
+    if start is not None:
+        ourdict["$gte"] = start
+    if stop is not None:
+        ourdict["$lt"] = stop
+    return {"timestamp": ourdict}
+
+print find_stations(None, None)
