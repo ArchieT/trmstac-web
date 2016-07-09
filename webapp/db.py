@@ -59,6 +59,14 @@ def find_stations(start, stop):
                 ) for j in k["list"]]) for k in stacje)
 
 
+def mozliwestacje(start, stop):
+    nasze = find_stations(start, stop)
+    dozw = set()
+    for i in nasze:
+        dozw.update(set(i))
+    return dozw
+
+
 def przedzialczasowy(start, stop):
     if start is None and stop is None:
         return {}
@@ -70,3 +78,4 @@ def przedzialczasowy(start, stop):
     return {"timestamp": ourdict}
 
 print find_stations(None, None)
+print mozliwestacje(None, None)
