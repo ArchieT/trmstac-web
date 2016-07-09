@@ -67,6 +67,20 @@ def mozliwestacje(start, stop):
     return dozw
 
 
+def dajmozliwestacje(fromts, tots):
+    return mozliwestacje(
+        datetime.datetime.fromtimestamp(fromts),
+        datetime.datetime.fromtimestamp(tots),
+    )
+
+
+def daj_sets_of_stations(fromts, tots):
+    return sets_of_stations(
+        datetime.datetime.fromtimestamp(fromts),
+        datetime.datetime.fromtimestamp(tots),
+    )
+
+
 def przedzialczasowy(start, stop):
     if start is None and stop is None:
         return {}
