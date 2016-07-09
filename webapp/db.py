@@ -69,8 +69,8 @@ def mozliwestacje(start, stop):
 
 def dajmozliwestacje(fromts, tots):
     return mozliwestacje(
-        datetime.datetime.fromtimestamp(fromts),
-        datetime.datetime.fromtimestamp(tots),
+        datetime.datetime.fromtimestamp(fromts) if fromts is not None else None,
+        datetime.datetime.fromtimestamp(tots) if tots is not None else None,
     )
 
 
