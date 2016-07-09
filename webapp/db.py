@@ -76,8 +76,8 @@ def dajmozliwestacje(fromts, tots):
 
 def daj_sets_of_stations(fromts, tots):
     return sets_of_stations(
-        datetime.datetime.fromtimestamp(fromts),
-        datetime.datetime.fromtimestamp(tots),
+        datetime.datetime.fromtimestamp(fromts) if fromts is not None else None,
+        datetime.datetime.fromtimestamp(tots) if tots is not None else None,
     )
 
 
