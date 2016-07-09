@@ -45,7 +45,7 @@ def find_opening_closing(start, stop):
     return {"pocz": pocz, "konc": konc, "przedzial": przedzial}
 
 
-def find_stations(start, stop):
+def sets_of_stations(start, stop):
     stacje = c.find(przedzialczasowy(start, stop),
                     {"list.loc": 1, "list.info": 1})
     return set(
@@ -60,7 +60,7 @@ def find_stations(start, stop):
 
 
 def mozliwestacje(start, stop):
-    nasze = find_stations(start, stop)
+    nasze = sets_of_stations(start, stop)
     dozw = set()
     for i in nasze:
         dozw.update(set(i))
@@ -76,6 +76,3 @@ def przedzialczasowy(start, stop):
     if stop is not None:
         ourdict["$lt"] = stop
     return {"timestamp": ourdict}
-
-print find_stations(None, None)
-print mozliwestacje(None, None)
