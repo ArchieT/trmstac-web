@@ -51,12 +51,12 @@ def find_stations(start, stop):
     return set(
         tuple(
             [
-                tuple(
+                tuple([
                     j["loc"]["num"],
                     j["loc"]["location"]["lat"],
                     j["loc"]["location"]["lon"],
                     j["info"]["addr"],
-                ) for j in k["list"]]) for k in stacje)
+                ]) for j in k["list"]]) for k in stacje)
 
 
 def przedzialczasowy(start, stop):
