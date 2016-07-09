@@ -17,8 +17,10 @@ def mostrecent():
         fromtime = vals.get("fromtime")
         if "totime" in vals:
             return jsonify(db.dajoddo(int(fromtime), int(vals.get("totime"))))
-        return jsonify(db.dajod(int(fromtime)))
-    return jsonify(db.najnowszy())
+        return jsonify(db.dajoddo(int(fromtime), None))
+    if "latest" in vals and vals["latest"]:
+        return jsonify(db.najnowszy())
+    return jsonify(db.dajoddo(None, None))
 
 if __name__ == "__main__":
     app.run(debug=True)
