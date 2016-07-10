@@ -19,16 +19,16 @@ func main() {
 
 	c := session.DB("trmstac").C("allsta")
 
-	waitin := time.NewTimer(time.Duration((15 - (time.Now().Second() % 15)) * 1000000000))
+	waitin := time.NewTimer(time.Duration((15 - (time.Now().Second() % 15)) * 999990000))
 
 	<-waitin.C
+	tickin := time.NewTicker(15 * time.Second)
+	<-tickin.C
 
 	err = wpis(c)
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	tickin := time.NewTicker(15 * time.Second)
 
 	for range tickin.C {
 		err = wpis(c)
