@@ -58,10 +58,9 @@ def find_interval(start, stop):
                 {
                     "timestamp": {"$gte": start, "$lt": stop},
                     "list.sta.num": moz[0],
-                    "$or": [
-                        {"list.loc.location.lat": moz[1]},
-                        {"list.loc.location.lon": moz[2]},
-                        {"list.info.addr": moz[3]}]},
+                    "list.loc.location.lat": moz[1],
+                    "list.loc.location.lon": moz[2],
+                    "list.info.addr": moz[3]},
                 {
                     "_id": 0,
                     "list": {"$elemMatch": {"sta.num": moz[0]}}}
