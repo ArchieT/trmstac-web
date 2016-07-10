@@ -56,7 +56,7 @@ def giveinterval(start, stop):
     for moz in mozliwe:
         interv[moz] = []
     for w in nasz:
-        for s in nasz["list"]:
+        for s in w["list"]:
             si = s["info"]
             loc = s["loc"]["location"]
             st = s["sta"]
