@@ -52,24 +52,25 @@ def find_interval(start, stop):
     mozliwe = mozliwestacje(start, stop)
     interv = {}
     for moz in mozliwe:
-        ourinterv = c.find(
-            {
-                "timestamp": {"$gte": start, "$lt": stop},
-                "list.sta.num": moz[0],
-                "$or": [
-                    {"list.loc.location.lat": moz[1]},
-                    {"list.loc.location.lon": moz[2]},
-                    {"list.info.addr": moz[3]}]},
-            {
-                "_id": 0,
-                "list": {"$elemMatch": {"sta.num": moz[0]}}}
-        ).limit(1)
-        opening = [i for i in ourinterv.sort("timestamp", 1)]
-        closing = [i for i in ourinterv.sort("timestamp", -1)]
-        highrow = [i for i in ourinterv.sort("list.sta.row", -1)]
-        highwol = [i for i in ourinterv.sort("list.sta.wol", -1)]
-        lowrow = [i for i in ourinterv.sort("list.sta.row", 1)]
-        lowwol = [i for i in ourinterv.sort("list.sta.wol", 1)]
+        def ourinterv():
+            return c.find(
+                {
+                    "timestamp": {"$gte": start, "$lt": stop},
+                    "list.sta.num": moz[0],
+                    "$or": [
+                        {"list.loc.location.lat": moz[1]},
+                        {"list.loc.location.lon": moz[2]},
+                        {"list.info.addr": moz[3]}]},
+                {
+                    "_id": 0,
+                    "list": {"$elemMatch": {"sta.num": moz[0]}}}
+            ).limit(1)
+        opening = [i for i in ourinterv().sort("timestamp", 1)]
+        closing = [i for i in ourinterv().sort("timestamp", -1)]
+        highrow = [i for i in ourinterv().sort("list.sta.row", -1)]
+        highwol = [i for i in ourinterv().sort("list.sta.wol", -1)]
+        lowrow = [i for i in ourinterv().sort("list.sta.row", 1)]
+        lowwol = [i for i in ourinterv().sort("list.sta.wol", 1)]
 
         interv[moz] = {
             "opening": pie(opening), "closing": pie(closing),
