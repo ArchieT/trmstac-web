@@ -27,7 +27,8 @@ def dajoddo(odtstamp, dotstamp):
         datetime.datetime.utcfromtimestamp(
             dotstamp) if dotstamp is not None else None,
     )
-    return nasz
+    return [(k, nasz[k]) for k in nasz]
+    # return nasz
     # return [k for k in nasz]
 
 
