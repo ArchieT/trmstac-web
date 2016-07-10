@@ -22,9 +22,9 @@ def najnowszy():
 
 def dajoddo(odtstamp, dotstamp):
     nasz = findoddo(
-        datetime.datetime.fromtimestamp(
+        datetime.datetime.utcfromtimestamp(
             odtstamp) if odtstamp is not None else None,
-        datetime.datetime.fromtimestamp(
+        datetime.datetime.utcfromtimestamp(
             dotstamp) if dotstamp is not None else None,
     )
     return [k for k in nasz]
@@ -129,15 +129,17 @@ def mozliwestacje(start, stop):
 
 def dajmozliwestacje(fromts, tots):
     return sorted(mozliwestacje(
-        datetime.datetime.fromtimestamp(fromts) if fromts is not None else None,
-        datetime.datetime.fromtimestamp(tots) if tots is not None else None,
+        datetime.datetime.utcfromtimestamp(
+            fromts) if fromts is not None else None,
+        datetime.datetime.utcfromtimestamp(tots) if tots is not None else None,
     ))
 
 
 def daj_sets_of_stations(fromts, tots):
     return sorted(sets_of_stations(
-        datetime.datetime.fromtimestamp(fromts) if fromts is not None else None,
-        datetime.datetime.fromtimestamp(tots) if tots is not None else None,
+        datetime.datetime.utcfromtimestamp(
+            fromts) if fromts is not None else None,
+        datetime.datetime.utcfromtimestamp(tots) if tots is not None else None,
     ))
 
 
