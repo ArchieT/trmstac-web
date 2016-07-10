@@ -21,13 +21,14 @@ def najnowszy():
 
 
 def dajoddo(odtstamp, dotstamp):
-    nasz = findoddo(
+    nasz = giveinterval(
         datetime.datetime.utcfromtimestamp(
             odtstamp) if odtstamp is not None else None,
         datetime.datetime.utcfromtimestamp(
             dotstamp) if dotstamp is not None else None,
     )
-    return [k for k in nasz]
+    return nasz
+    # return [k for k in nasz]
 
 
 def findoddo(start, stop):
