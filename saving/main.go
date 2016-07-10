@@ -19,9 +19,9 @@ func main() {
 
 	c := session.DB("trmstac").C("allsta")
 
-	tickin := time.NewTimer((15 - (time.Now().Second() % 15)) * time.Second)
+	waitin := time.NewTimer((15 - (time.Now().Second() % 15)) * time.Second)
 
-	<-tickin
+	<-waitin
 
 	err = wpis(c)
 	if err != nil {
