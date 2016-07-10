@@ -52,6 +52,7 @@ def pie(x): return x[0] if len(x) > 0 else None
 def find_interval(start, stop):
     mozliwe = mozliwestacje(start, stop)
     interv = {}
+    print [moz for moz in mozliwe]
     for moz in mozliwe:
         def ourinterv():
             return c.find(
