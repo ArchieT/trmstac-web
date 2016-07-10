@@ -63,7 +63,8 @@ def find_interval(start, stop):
                     "list.info.addr": moz[3]},
                 {
                     "_id": 0,
-                    "list": {"$elemMatch": {"info.num": moz[0]}}}
+                    "list": {"$elemMatch": {"info.num": moz[0]}},
+                    "list.info": 0, "list.loc": 0}
             ).limit(1)
         opening = [i for i in ourinterv().sort("timestamp", 1)]
         closing = [i for i in ourinterv().sort("timestamp", -1)]
