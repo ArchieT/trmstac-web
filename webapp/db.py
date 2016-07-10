@@ -64,8 +64,8 @@ def giveinterval(start, stop):
                 (si["num"], loc["lat"], loc["lon"], si["addr"])
             ].append({
                 "timestamp": w["timestamp"],
-                "row": st["row"],
-                "wol": st["wol"]
+                "row": st["dostrow"],
+                "wol": st["wolrow"]
             })
     return interv
 
