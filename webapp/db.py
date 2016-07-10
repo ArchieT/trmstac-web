@@ -72,6 +72,7 @@ def find_interval(start, stop):
         highwol = [i for i in ourinterv().sort("list.sta.wol", -1)]
         lowrow = [i for i in ourinterv().sort("list.sta.row", 1)]
         lowwol = [i for i in ourinterv().sort("list.sta.wol", 1)]
+        print opening, closing, highrow, highwol, lowrow, lowwol
 
         interv[moz] = {
             "opening": pie(opening), "closing": pie(closing),
