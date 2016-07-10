@@ -38,11 +38,12 @@ def findoddo(start, stop):
 
 
 def simple_find_opening_closing(start, stop):
-    przedzial = c.find(przedzialczasowy(start, stop),
-                       {"_id": 0}).limit(1)
-    pocz = przedzial.sort("timestamp", 1)
-    konc = przedzial.sort("timestamp", -1)
-    return {"pocz": pocz, "konc": konc, "przedzial": przedzial}
+    def przedzial():
+        return c.find(przedzialczasowy(start, stop),
+                      {"_id": 0}).limit(1)
+    pocz = przedzial().sort("timestamp", 1)
+    konc = przedzial().sort("timestamp", -1)
+    return {"pocz": pocz, "konc": konc}
 
 
 def pie(x): return x[0] if len(x) > 0 else None
