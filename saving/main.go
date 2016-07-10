@@ -23,7 +23,6 @@ func main() {
 
 	<-waitin.C
 	tickin := time.NewTicker(15 * time.Second)
-	<-tickin.C
 
 	err = wpis(c)
 	if err != nil {
