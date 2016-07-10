@@ -5,20 +5,23 @@ $url = "http://localhost:5000/";
 
 $fromtime = isset($_GET['fromtime']);
 $totime = isset($_GET['totime']);
+$interval = isset($_GET('interval']);
 $latest = isset($_GET['latest']);
 $callback = isset($_GET['callback']);
 
 $fromorto = $fromtime || $totime;
-$frotolat = $fromorto || $latest;
+$fromorin = $fromorto || $interval;
+$frominla = $fromorin || $latest;
 
-if( $frotolat || $callback ) {
+if( $fromorin || $callback ) {
 
 	$url .= '?';
 
 	if( $fromtime ) { $url .= "fromtime=" . $_GET['fromtime']; }
 	if( $totime ) { $url .= ( $fromtime ? '&' : '' ) . "totime=" . $_GET['totime']; }
-	if( $latest ) { $url .= ( $fromorto ? '&' : '' ) . "latest=" . $_GET['latest']; }
-	if( $callback ) { $url .= ( $frotolat ? '&' : '') . "callback=" . $_GET['callback']; }
+	if( $interval ) { $url .= ($fromorto ? '&' : '' ) . "interval=" . $_GET['interval']; } 
+	if( $latest ) { $url .= ( $fromorin ? '&' : '' ) . "latest=" . $_GET['latest']; }
+	if( $callback ) { $url .= ( $frominla ? '&' : '') . "callback=" . $_GET['callback']; }
 
 }
 

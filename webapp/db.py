@@ -37,12 +37,31 @@ def findoddo(start, stop):
     return nasz
 
 
-def find_opening_closing(start, stop):
+def simple_find_opening_closing(start, stop):
     przedzial = c.find(przedzialczasowy(start, stop),
                        {"_id": 0}).limit(1)
     pocz = przedzial.sort("timestamp", 1)
     konc = przedzial.sort("timestamp", -1)
     return {"pocz": pocz, "konc": konc, "przedzial": przedzial}
+
+
+def find_interval(start, stop):
+    mozliwe = mozliwestacje(start, stop)
+    interv = {}
+    for moz in mozliwe:
+        interv[moz] = c.find(
+            {
+                "timestamp": {"$gte": start, "$lt": stop},
+                "list.sta.num": moz[0],
+                "$or": [
+                    {"list.loc.location.lat": moz[1]},
+                    {"list.loc.location.lon": moz[2]},
+                    {"list.info.addr": moz[3]}]},
+            {
+                "_id": 0,
+                "list": {"$elemMatch": {"sta.num": moz[0]}}}
+        )
+    return interv
 
 
 def sets_of_stations(start, stop):

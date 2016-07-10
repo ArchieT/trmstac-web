@@ -15,15 +15,19 @@ def mostrecent():
     vals = request.values
     fromtime = None
     totime = None
+    interval = None
     if "fromtime" in vals:
         fromtime = int(vals.get("fromtime"))
     if "totime" in vals:
         totime = int(vals.get("totime"))
+    if "interval" in vals:
+        interval = int(vals.get("interval"))
     if fromtime is None and totime is None \
             and "latest" in vals and vals["latest"]:
         return jsonify(db.najnowszy())
     return jsonify(
-        data=db.dajoddo(fromtime, totime),
+        data=db.dajoddo(fromtime, totime) if not interval
+        else db.dajoddointerval(fromtime, totime, interval),
         mozliwestacje=db.dajmozliwestacje(fromtime, totime),
         setsofstations=db.daj_sets_of_stations(fromtime, totime),
     )
