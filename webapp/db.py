@@ -52,13 +52,13 @@ def pie(x): return x[0] if len(x) > 0 else None
 def find_interval(start, stop):
     mozliwe = mozliwestacje(start, stop)
     interv = {}
-    print [moz for moz in mozliwe]
+    print[moz for moz in mozliwe]
     for moz in mozliwe:
         def ourinterv():
             return c.find(
                 {
                     "timestamp": {"$gte": start, "$lt": stop},
-                    "list.sta.num": moz[0],
+                    "list.info.num": moz[0],
                     "list.loc.location.lat": moz[1],
                     "list.loc.location.lon": moz[2],
                     "list.info.addr": moz[3]},
