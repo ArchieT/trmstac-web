@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/ArchieT/trmstac/get"
-	"gopkg.in/mgo.v2"
 	"log"
 	"time"
+
+	"github.com/ArchieT/trmstac/get"
+	"gopkg.in/mgo.v2"
 )
 
 func main() {
@@ -18,12 +19,16 @@ func main() {
 
 	c := session.DB("trmstac").C("allsta")
 
+	tickin := time.NewTimer((15 - (time.Now().Second() % 15)) * time.Second)
+
+	<-tickin
+
 	err = wpis(c)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	tickin := time.NewTicker(20 * time.Second)
+	tickin := time.NewTicker(15 * time.Second)
 
 	for range tickin.C {
 		err = wpis(c)
