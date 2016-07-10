@@ -45,6 +45,9 @@ def simple_find_opening_closing(start, stop):
     return {"pocz": pocz, "konc": konc, "przedzial": przedzial}
 
 
+def pie(x): return x[0] if len(x) > 0 else None
+
+
 def find_interval(start, stop):
     mozliwe = mozliwestacje(start, stop)
     interv = {}
@@ -61,16 +64,17 @@ def find_interval(start, stop):
                 "_id": 0,
                 "list": {"$elemMatch": {"sta.num": moz[0]}}}
         ).limit(1)
-        opening = [i for i in ourinterv.sort("timestamp", 1)][0]
-        closing = [i for i in ourinterv.sort("timestamp", -1)][0]
-        highrow = [i for i in ourinterv.sort("list.sta.row", -1)][0]
-        highwol = [i for i in ourinterv.sort("list.sta.wol", -1)][0]
-        lowrow = [i for i in ourinterv.sort("list.sta.row", 1)][0]
-        lowwol = [i for i in ourinterv.sort("list.sta.wol", 1)][0]
+        opening = [i for i in ourinterv.sort("timestamp", 1)]
+        closing = [i for i in ourinterv.sort("timestamp", -1)]
+        highrow = [i for i in ourinterv.sort("list.sta.row", -1)]
+        highwol = [i for i in ourinterv.sort("list.sta.wol", -1)]
+        lowrow = [i for i in ourinterv.sort("list.sta.row", 1)]
+        lowwol = [i for i in ourinterv.sort("list.sta.wol", 1)]
+
         interv[moz] = {
-            "opening": opening, "closing": closing,
-            "highrow": highrow, "highwol": highwol,
-            "lowrow": lowrow, "lowwol": lowwol}
+            "opening": pie(opening), "closing": pie(closing),
+            "highrow": pie(highrow), "highwol": pie(highwol),
+            "lowrow": pie(lowrow), "lowwol": pie(lowwol)}
     return interv
 
 
