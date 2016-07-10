@@ -75,9 +75,12 @@ def find_interval(start, stop):
         print opening, closing, highrow, highwol, lowrow, lowwol
 
         interv[moz] = {
-            "opening": pie(opening), "closing": pie(closing),
-            "highrow": pie(highrow), "highwol": pie(highwol),
-            "lowrow": pie(lowrow), "lowwol": pie(lowwol)}
+            "opening": pie(pie(opening)['list']),
+            "closing": pie(pie(closing)['list']),
+            "highrow": pie(pie(highrow)['list']),
+            "highwol": pie(pie(highwol)['list']),
+            "lowrow": pie(pie(lowrow)['list']),
+            "lowwol": pie(pie(lowwol)['list'])}
     return interv
 
 
