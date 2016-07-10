@@ -21,7 +21,7 @@ func main() {
 
 	waitin := time.NewTimer((15 - (time.Now().Second() % 15)) * time.Second)
 
-	<-waitin
+	<-waitin.C
 
 	err = wpis(c)
 	if err != nil {
