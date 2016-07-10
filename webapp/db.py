@@ -49,6 +49,27 @@ def simple_find_opening_closing(start, stop):
 def pie(x): return x[0] if len(x) > 0 else None
 
 
+def giveinterval(start, stop):
+    nasz = findoddo(start, stop)
+    mozliwe = mozliwestacje(start, stop)
+    interv = {}
+    for moz in mozliwe:
+        interv[moz] = []
+    for w in nasz:
+        for s in nasz["list"]:
+            si = s["info"]
+            loc = s["loc"]["location"]
+            st = s["sta"]
+            interv[
+                (si["num"], loc["lat"], loc["lon"], si["addr"])
+            ].append({
+                "timestamp": w["timestamp"],
+                "row": st["row"],
+                "wol": st["wol"]
+            })
+    return interv
+
+
 def find_interval(start, stop):
     mozliwe = mozliwestacje(start, stop)
     interv = {}
