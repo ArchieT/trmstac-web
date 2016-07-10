@@ -19,7 +19,7 @@ func main() {
 
 	c := session.DB("trmstac").C("allsta")
 
-	waitin := time.NewTimer(int(15-(time.Now().Second()%15)) * time.Second)
+	waitin := time.NewTimer(time.Duration((15 - (time.Now().Second() % 15)) * 1000000000))
 
 	<-waitin.C
 
