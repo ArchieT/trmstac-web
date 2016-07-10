@@ -49,7 +49,7 @@ def find_interval(start, stop):
     mozliwe = mozliwestacje(start, stop)
     interv = {}
     for moz in mozliwe:
-        interv[moz] = c.find(
+        ourinterv = c.find(
             {
                 "timestamp": {"$gte": start, "$lt": stop},
                 "list.sta.num": moz[0],
@@ -60,7 +60,17 @@ def find_interval(start, stop):
             {
                 "_id": 0,
                 "list": {"$elemMatch": {"sta.num": moz[0]}}}
-        )
+        ).limit(1)
+        opening = [i for i in ourinterv.sort("timestamp", 1)][0]
+        closing = [i for i in ourinterv.sort("timestamp", -1)][0]
+        highrow = [i for i in ourinterv.sort("list.sta.row", -1)][0]
+        highwol = [i for i in ourinterv.sort("list.sta.wol", -1)][0]
+        lowrow = [i for i in ourinterv.sort("list.sta.row", 1)][0]
+        lowwol = [i for i in ourinterv.sort("list.sta.wol", 1)][0]
+        interv[moz] = {
+            "opening": opening, "closing": closing,
+            "highrow": highrow, "highwol": highwol,
+            "lowrow": lowrow, "lowwol": lowwol}
     return interv
 
 
